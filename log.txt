@@ -1,0 +1,11 @@
+hi
+<<<<<<< HEAD
+hi e
+bye
+hi sai bye sai
+=======
+
+
+
+okk fine
+>>>>>>> node
