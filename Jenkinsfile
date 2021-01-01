@@ -8,9 +8,10 @@ node {
     stage ('mvn install package'){
         sh label: '', script: 'mvn clean install package'
     }
+
+    stage('Build image') {         
+       
+            app = docker.build("sainathreddy/testexperiment")    
+       }     
     
-    stage ('build docker images'){
-        sh 'docker login -u sainathreddy -p 12345scm'
-        sh label: '', script: ' docker build -t sainathreddy/sai1234 .'
-    }
 }
