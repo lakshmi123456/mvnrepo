@@ -10,6 +10,7 @@ node {
     }
     
     stage ('build docker images'){
-        sh label: '', script: ' docker build -t sainathreddy/saiimage .'
+        sh 'docker login -u sainathreddy -p 12345scm'
+        sh label: '', script: ' docker build -t sainathreddy/sai1234 .'
     }
 }
