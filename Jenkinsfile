@@ -12,13 +12,4 @@ node {
     stage ('build docker images'){
         sh label: '', script: ' docker build -t sainathreddy/saiimage .'
     }
-    
-#    stage ('push docker image to docker hub'){
-#        sh label: '', script: ' docker push sainathreddy/saiimage '
-        
-#        stage ('run the container'){
-            
-#            sh label: '', script: 'docker run -itd --name sai-container sainathreddy/saiimage'
-#        }
-#    }
 }
