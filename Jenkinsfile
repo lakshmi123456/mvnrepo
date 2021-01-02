@@ -1,25 +1,14 @@
-node {
-    def app
-
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-
-        checkout scm
-    }
-
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("getintodevops/hellonode")
-    }
-
-    stage('Test image') {
-        /* Ideally, we would run a test framework against our image.
-         * For this example, we're using a Volkswagen-type approach ;-) */
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
+node {    
+      def app     
+      stage('Clone repository') {               
+          git credentialsId: 'b3204c65-c12b-4a5c-bf9c-de4644e2daa7', url: 'https://github.com/lakshmi123456/mvnrepo.git'
+      }
+       
+      stage ('mvn install package'){
+        sh label: '', script: 'mvn clean install package'      
+           
+      } 
+      stage ('mvn install package'){
+        sh label: '', script: 'test.sh'
+      }    
 }
