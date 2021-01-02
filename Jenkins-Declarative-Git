@@ -16,7 +16,7 @@ pipeline {
         }
         stage('maven build'){
             steps {
-                sh label: '', script: 'test.sh'
+                sh "./test.sh"
             }
         }
     }
