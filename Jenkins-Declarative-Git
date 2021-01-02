@@ -19,7 +19,7 @@ pipeline {
                 sh "./test.sh"
             }
         }
-       stage('shell script'){
+       stage('Docker-compose'){
             steps {
                 sh "docker-compose up -d "
             }
