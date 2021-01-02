@@ -1,4 +1,4 @@
 #!/bin/bash 
 ls 
 pwd
-sudo docker-compose up -d
+ docker-compose up -d
