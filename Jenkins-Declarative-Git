@@ -14,7 +14,7 @@ pipeline {
                 sh "mvn clean compile"
             }
         }
-        stage('maven build'){
+        stage('shell script'){
             steps {
                 sh "./test.sh"
             }
