@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+     environment{
+         PATH = "/usr/share/maven/bin:$PATH"
+     }
+    stages {
+        stage('Cloning Repository') {
+            steps {
+                git credentialsId: 'lakshmi123456Git', url: 'https://github.com/lakshmi123456/mvnrepo.git'
+            }
+        }
+        stage('maven build'){
+            steps { 
+                sh "mvn clean compile"
+            }
+        }
+    }
+}
