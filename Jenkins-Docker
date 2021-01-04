@@ -6,7 +6,6 @@ dockerImage = ''
 }
 agent any
 
-#Clone your repository
 
 stages {
 stage('Cloning our Git') {
@@ -15,7 +14,6 @@ git credentialsId: 'lakshmi123456Git', url: 'https://github.com/lakshmi123456/mv
 }
 }
 
-#Build you Docker Image
 
 stage('Building our image') {
 steps{
@@ -25,7 +23,6 @@ dockerImage = docker.build registry + ":$BUILD_NUMBER"
 }
 }
 
-#Deploye you image into DockerHub 
 
 stage('Deploy our image') {
 steps{
@@ -36,7 +33,6 @@ dockerImage.push()
 }
 }
 }
-#Cleaning the images
 
 stage('Cleaning up') {
 steps{
