@@ -1,7 +1,4 @@
 pipeline {
-
-#pass Docker Hub Credentials
-
 environment {
 registry = "sainathreddy/docker-test123"
 registryCredential = 'Docker'
