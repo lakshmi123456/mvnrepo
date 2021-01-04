@@ -1,30 +1,12 @@
 pipeline {
-    agent any
-     environment{
-       registry = "sainathreddy/docker-test"
-       registryCredential = 'Docker'
-       dockerImage = ''
-         PATH = "/usr/share/maven/bin:/usr/local/bin:$PATH"
-     }
+    agent {
+        docker { image 'node:14-alpine' }
+    }
     stages {
-        stage('Cloning Repository') {
+        stage('Test') {
             steps {
-                git credentialsId: 'lakshmi123456Git', url: 'https://github.com/lakshmi123456/mvnrepo.git'
+                sh 'node --version'
             }
         }
-        stage('maven build'){
-            steps { 
-                sh "mvn clean compile"
-            }
-        }
-        stage('Building image') {
-          steps{
-            script {
-              dockerImage = docker.build registry + ":$BUILD_NUMBER"
-            }
-          }
-        }
-
-
     }
 }
