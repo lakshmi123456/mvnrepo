@@ -1,16 +1,25 @@
 pipeline {
+
+#pass Docker Hub Credentials
+
 environment {
 registry = "sainathreddy/docker-test123"
 registryCredential = 'Docker'
 dockerImage = ''
 }
 agent any
+
+#Clone your repository
+
 stages {
 stage('Cloning our Git') {
 steps {
 git credentialsId: 'lakshmi123456Git', url: 'https://github.com/lakshmi123456/mvnrepo.git'
 }
 }
+
+#Build you Docker Image
+
 stage('Building our image') {
 steps{
 script {
@@ -18,11 +27,23 @@ dockerImage = docker.build registry + ":$BUILD_NUMBER"
 }
 }
 }
+
+#Deploye you image into DockerHub 
+
 stage('Deploy our image') {
 steps{
 script {
 docker.withRegistry( '', registryCredential ) {
 dockerImage.push()
+}
+}
+}
+}
+#Cleaning the images
+
+stage('Cleaning up') {
+steps{
+sh "docker rmi $registry:$BUILD_NUMBER"
 }
 }
 }
